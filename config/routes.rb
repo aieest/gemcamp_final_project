@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     root 'home#index'
   end
 
-
+  namespace :admin do
+    root 'home#index'
+  end
 end
