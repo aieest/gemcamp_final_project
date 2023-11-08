@@ -1,20 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :users, as: :client, path: 'client', controllers: {
-    sessions: 'client/users/sessions'
-  }
+  constraints(AdminDomainConstraint.new) do
+    namespace :admin do
+      root "home#index"
+    end
 
-  devise_for :users, as: :admin, path: 'admin', controllers: {
-    sessions: 'admin/users/sessions'
-  }
-
-  root 'welcome#index'
-
-  namespace :admin do
-    root "home#index"
+    devise_for :users, as: :admin, path: 'admin', controllers: {
+      sessions: 'admin/users/sessions'
+    }, skip: [:registrations]
   end
 
-  namespace :client do
-    root "home#index"
+  constraints(ClientDomainConstraint.new) do
+    namespace :client do
+      root "home#index"
+    end
+
+    devise_for :users, as: :client, path: 'client', controllers: {
+      sessions: 'client/users/sessions'
+    }
   end
 
 end
