@@ -3,5 +3,5 @@
     <%= link_to "Invite", "", class: "nav-link" %>
     <%= link_to "Lottery", "", class: "nav-link" %>
     <%= link_to "Shop", "", class: "nav-link" %>
-    <%= link_to "Me", "", class: "nav-link" %>
+    <%= link_to "Me", client_me_path, class: "nav-link" if client_user_signed_in? %>
 </nav>
