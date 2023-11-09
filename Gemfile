@@ -70,3 +70,5 @@ end
 gem 'devise'
 
 gem 'phonelib'
+
+gem 'rest-client'
