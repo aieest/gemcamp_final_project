@@ -1,4 +1,19 @@
-<h1>Client</h1>
-<% if client_user_signed_in? %>
-  <%= link_to 'Sign out', destroy_client_user_session_path, data: { 'turbo-method': :delete } %>
-<% end %>
+<section class="client-home d-grid" style="grid-template-rows: 20vh 60vh 20vh; width: 100vw; place-items: center">
+
+
+  <div class="top-nav w-100" style="place-self: start">
+    <%= render partial: 'client/partial/top_nav' %>
+  </div>
+
+  <content class="client-home-main w-100 d-flex flex-column " style="height: inherit; margin: 0;">
+    <%= render partial: 'client/partial/banner_image' %>
+    <%= render partial: 'client/partial/winners_feedback' %>
+    <%= render partial: 'client/partial/client_coming_soon' %>
+  </content>
+
+  <div class="bottom-nav w-100 border d-flex justify-content-center" style="place-items: center">
+    <%= render partial: 'client/partial/bottom_nav' %>
+  </div>
+
+
+</section>
