@@ -1,26 +1,43 @@
-<h2>Log in</h2>
+<section class="sign-in-client d-grid" style="grid-auto-rows: 20vh 60vh 20vh; width: 100vw; place-items: center">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+  <div class="top-nav w-100" style="place-self: start">
+    <%= render partial: 'client/partial/top_nav' %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <div class="client-sign-in-main d-flex flex-column" style="width: 30%; height: 35vh">
+    <div class="d-flex flex-row justify-content-between align-items-center my-4">
+      <%= link_to "Sign in", new_session_path(resource_name), class: "btn btn-outline-dark w-50 border" %>
+      <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-light w-50 border" %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-group mb-2">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: :email, class: "form-control w-100" %>
+      </div>
+
+      <div class="form-group mb-2">
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: :password, class: "form-control w-100" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="form-group mb-4">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Sign in", class: "btn btn-success w-100" %>
+      </div>
+    <% end %>
+
   </div>
-<% end %>
 
-<%= render "client/users/shared/links" %>
+  <div class="bottom-nav w-100 border d-flex justify-content-center" style="place-items: center">
+    <%= render partial: 'client/partial/bottom_nav' %>
+  </div>
+
+
+</section>

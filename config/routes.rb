@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {
-      sessions: 'client/users/sessions'
+      sessions: 'client/users/sessions',
+      registrations: 'client/users/registrations'
     }
   end
 
