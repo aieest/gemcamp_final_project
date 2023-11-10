@@ -72,3 +72,5 @@ gem 'devise'
 gem 'phonelib'
 
 gem 'rest-client'
+
+gem "active_model_serializers"

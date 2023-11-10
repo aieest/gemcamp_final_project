@@ -1,0 +1,78 @@
+<%= form_with model: address, url: url, method: method, class: 'form mt-2' do |f| %>
+  <div class="input-group w-100 mb-2">
+    <%= f.label :type, class: 'input-group-text '%>
+    <div class="form-control">
+      <%= f.radio_button :genre, :home, class: 'form-check-input' %>
+      <%= f.label :home, class: 'form-check-label me-2' %>
+      <%= f.radio_button :genre, :office, class: 'form-check-input' %>
+      <%= f.label :office, class: 'form-check-label' %>
+    </div>
+  </div>
+
+  <div class="input-group w-100 mb-2">
+    <%= f.label :region, class: 'input-group-text'%>
+    <%# f.collection_select :address_region_id, [], '', '', class: 'form-select w-100' %>
+    <select class="form-select">
+      <option selected>Choose...</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+
+  <div class="input-group w-100 mb-2">
+    <%= f.label :province, class: 'input-group-text'%>
+    <%# f.collection_select :address_province_id, [], '', '', class: 'form-select w-100' %>
+    <select class="form-select">
+      <option selected>Choose...</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+
+  <div class="input-group w-100 mb-2">
+    <%= f.label :city, class: 'input-group-text'%>
+    <%# f.collection_select :address_city_id, [], '', '', class: 'form-select w-100' %>
+    <select class="form-select">
+      <option selected>Choose...</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+
+  <div class="input-group w-100 mb-2">
+    <%= f.label :barangay, class: 'input-group-text'%>
+    <%# f.collection_select :address_barangay_id, [], '', '', class: 'form-select w-100' %>
+    <select class="form-select">
+      <option selected>Choose...</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+
+  <div class="form-group w-100 mb-2">
+    <%= f.label :street_address, class: 'form-label' %>
+    <%= f.text_field :street_address, class: 'form-control', placeholder: '123 St.' %>
+  </div>
+
+  <div class="form-group w-100 mb-2">
+    <%= f.label :name, class: 'form-label' %>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Set address name' %>
+  </div>
+
+  <div class="form-group w-100 mb-2">
+    <%= f.label :phone_number, class: 'form-label' %>
+    <%= f.text_field :phone_number, class: 'form-control', placeholder: '09#########' %>
+  </div>
+
+  <div class="form-group w-100 mb-4">
+    <%= f.label :remark, class: 'form-label' %>
+    <%= f.text_field :remark, class: 'form-control', placeholder: 'Set remark' %>
+  </div>
+
+
+  <%= f.submit 'Save address', class: 'btn btn-success w-100' %>
+<% end %>

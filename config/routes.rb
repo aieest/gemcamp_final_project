@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :client do
       root "home#index"
       get 'me', to: 'me#index', as: 'me'
+      resources :address
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {
