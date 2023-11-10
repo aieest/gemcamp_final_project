@@ -1,4 +1,5 @@
-<%= form_with model: address, url: url, method: method, class: 'form mt-2' do |f| %>
+<%= form_with model: address, url: url, method: method, data: { controller: 'location select2' }, class: 'form mt-2' do |f| %>
+
   <div class="input-group w-100 mb-2">
     <%= f.label :type, class: 'input-group-text '%>
     <div class="form-control">
@@ -9,48 +10,23 @@
     </div>
   </div>
 
-  <div class="input-group w-100 mb-2">
-    <%= f.label :region, class: 'input-group-text'%>
-    <%# f.collection_select :address_region_id, [], '', '', class: 'form-select w-100' %>
-    <select class="form-select">
-      <option selected>Choose...</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
+  <div class="form-group w-100 mb-2">
+    <%= f.label :region, class: 'form-label'%>
+    <%= f.collection_select :region_id, Address::Region.all, :id, :region_name, { prompt: 'Please select region' }, class: 'form-control select2 w-100', data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>
   </div>
 
-  <div class="input-group w-100 mb-2">
-    <%= f.label :province, class: 'input-group-text'%>
-    <%# f.collection_select :address_province_id, [], '', '', class: 'form-select w-100' %>
-    <select class="form-select">
-      <option selected>Choose...</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
+  <div class="form-group w-100 mb-2">
+    <%= f.label :province, class: 'form-label'%>
+    <%= f.collection_select :province_id, [], nil, nil, { prompt: 'Please select province' }, class: 'form-control select2', data: { location_target: 'selectedProvinceId', action: 'change->location#fetchCities' } %>
+
+    <div class="form-group w-100 mb-2">
+      <%= f.label :city, class: 'form-label'%>
+      <%= f.collection_select :city_id, [], nil, nil, { prompt: 'Please select city' }, class: 'form-control select2', data: { location_target: 'selectedCityId', action: 'change->location#fetchBarangays' } %>
   </div>
 
-  <div class="input-group w-100 mb-2">
-    <%= f.label :city, class: 'input-group-text'%>
-    <%# f.collection_select :address_city_id, [], '', '', class: 'form-select w-100' %>
-    <select class="form-select">
-      <option selected>Choose...</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
-  </div>
-
-  <div class="input-group w-100 mb-2">
-    <%= f.label :barangay, class: 'input-group-text'%>
-    <%# f.collection_select :address_barangay_id, [], '', '', class: 'form-select w-100' %>
-    <select class="form-select">
-      <option selected>Choose...</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
+    <div class="form-group w-100 mb-2">
+      <%= f.label :barangay, class: 'form-label'%>
+      <%= f.collection_select :barangay_id, [], nil, nil, { prompt: 'Please select barangay' }, class: 'form-control select2', data: { location_target: 'selectedBarangayId' } %>
   </div>
 
   <div class="form-group w-100 mb-2">
