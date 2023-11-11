@@ -17,6 +17,8 @@ class Address < ApplicationRecord
   belongs_to :barangay
   before_save :validate_address_count
 
+  scope :default, -> { find_by(is_default: true) }
+
   private
 
   def validate_address_count
