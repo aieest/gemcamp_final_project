@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :client do
+    get 'invite/index'
+  end
   constraints(AdminDomainConstraint.new) do
     namespace :admin do
       root "home#index"
