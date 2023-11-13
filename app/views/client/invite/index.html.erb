@@ -1,0 +1,28 @@
+<section class="client-invite" style="height: 70vh;">
+
+  <div class="top-nav w-100" style="place-self: start">
+    <%= render partial: 'client/partial/top_nav' %>
+  </div>
+
+  <div class="container mt-4 mb-5">
+    <div class="d-flex flex-column justify-content-center align-items-center" style="height: 500px;">
+      <span class="fs-2 fw-semibold">Invite other people!</span>
+      <div class="w-50 border-bottom mb-4"></div>
+      <div class="mb-4" style="width: 200px; height: 200px">
+        <%= raw @svg.html_safe %>
+      </div>
+
+      <div class="input-group" style="width: 500px;">
+        <span class="form-control">client.com:3000/users/sign_up?promoter=<%= current_client_user.email %></span>
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa-solid fa-copy"></i></button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-nav w-100 border d-flex justify-content-center" style="place-items: center">
+    <%= render partial: 'client/partial/bottom_nav' %>
+  </div>
+
+</section>
+
