@@ -15,7 +15,7 @@ class Address < ApplicationRecord
   belongs_to :province
   belongs_to :city
   belongs_to :barangay
-  before_save :validate_address_count
+  validate :validate_address_count
 
   scope :default, -> { find_by(is_default: true) }
 

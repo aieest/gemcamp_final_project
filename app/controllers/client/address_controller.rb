@@ -3,6 +3,7 @@ class Client::AddressController < ApplicationController
   before_action :set_address, only: [:update, :destroy]
   before_action :get_default_address, only: [:update]
 
+
   def index
   end
 
@@ -63,4 +64,5 @@ class Client::AddressController < ApplicationController
   def get_default_address
     @default_address = current_client_user.addresses.default[0]
   end
+
 end
