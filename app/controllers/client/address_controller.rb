@@ -12,12 +12,18 @@ class Client::AddressController < ApplicationController
 
   def create
     @address = current_client_user.addresses.build(address_params)
+    if @address.save
+      flash[:notice] = "Added new address."
+      redirect_to client_address_index_path
+    else
+      render :new
+    end
   end
 
   def edit
     if @address.save
       flash[:notice] = "Added new address."
-      redirect_to address_index_path
+      redirect_to client_address_index_path
     else
       render :new
     end
@@ -33,7 +39,7 @@ class Client::AddressController < ApplicationController
       @address.is_default = true
       if @address.save
         flash[:notice] = 'Changed default address.'
-        redirect_to address_index_path
+        redirect_to client_address_index_path
       end
     end
   end
@@ -41,7 +47,7 @@ class Client::AddressController < ApplicationController
   def destroy
     @address.destroy
     flash[:notice] = "Address deleted."
-    redirect_to address_index_path
+    redirect_to client_address_index_path
   end
 
   private

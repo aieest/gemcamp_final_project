@@ -1,3 +1,3 @@
 class RegionSerializer < ActiveModel::Serializer
-  attributes :id, :name, :region_name
+  attributes :id, :name
 end

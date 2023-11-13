@@ -20,7 +20,7 @@
         <small class="opacity-75">No addresses created. Add one!</small>
       </div>
     <% else %>
-      <div class="w-100 h-100 border p-4 rounded d-flex flex-column align-items-center" style="min-height: 350px ">
+      <div class="w-100 h-100 border p-4 rounded d-flex flex-column align-items-center" style="min-height: 350px; overflow-y: scroll; max-height: 70vh; ">
         <% current_client_user.addresses.each do |address| %>
           <div class="card w-100 mb-2">
             <div class="card-header d-flex flex-row justify-content-between">
@@ -28,7 +28,7 @@
               <div id="buttons" class="d-flex flex-row">
                 <%= link_to 'Set as default', '', class: "btn btn-sm btn-primary me-2 #{"disabled" if address.is_default?}", aria: { disabled: "#{address.is_default? ? "true" : "false"}"} %>
                 <%= link_to 'Edit', edit_client_address_path(address), class: "btn btn-sm btn-primary me-2" %>
-                <%= button_to 'Delete', client_address_index_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+                <%= button_to 'Delete', client_address_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
               </div>
             </div>
 

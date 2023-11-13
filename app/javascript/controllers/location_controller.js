@@ -5,12 +5,14 @@ function setInitialDefaultValue(name, target) {
     option.value = ""
     option.text = `Please select ${name}`
     target.appendChild(option)
+    console.log("sdasdferf")
 }
 
 // Connects to data-controller="location"
 export default class extends Controller {
     static targets = ['selectedRegionId', 'selectedProvinceId', 'selectedCityId', 'selectedBarangayId']
     fetchProvinces() {
+
         let provinceTarget = this.selectedProvinceIdTarget
         $(provinceTarget).empty()
 
