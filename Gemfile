@@ -78,3 +78,5 @@ gem "active_model_serializers"
 gem 'stimulus-rails'
 
 gem "carrierwave"
+
+gem "rqrcode"
