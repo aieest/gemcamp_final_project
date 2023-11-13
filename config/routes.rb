@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'items/index'
+  end
   namespace :client do
     get 'invite/index'
   end
