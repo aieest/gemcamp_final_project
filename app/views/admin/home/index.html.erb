@@ -56,7 +56,45 @@
       </div>
     </div>
     <div class="bottom-row" style="padding: 10px; border: 1px solid black; height: auto;">
-      Hi, Username
+
+
+      <div class="p-4 w-100">
+        <h3>Hi, <%= current_admin_user.username %>!</h3>
+
+        <h4>List of client users (<%= User.client.count %>)</h4>
+        <div class="w-100 border-bottom mb-2"></div>
+        <div class="d-flex flex-column">
+          <% @client_users.each_with_index do |client, index|%>
+            <a class="form-control border nav-link mb-2 p-2 w-100" data-bs-toggle="collapse" href="#client_detail_<%= index + 1 %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <%= index + 1 %>. <%= client.email %>
+            </a>
+
+            <div class="collapse mb-2" id="client_detail_<%= index + 1 %>">
+              <div class="card card-body flex-row justify-content-between pe-4">
+                <div class="d-flex flex-column">
+                  <small>Promoter: <%= client.parent.present? ? client.parent.email : "None" %></small>
+                  <small>Phone Number: <%= client.phone.present? ? client.phone : "None" %></small>
+                  <small>Total Deposit: <%= client.total_deposit %></small>
+                </div>
+
+                <div class="d-flex flex-column">
+                  <small>Children Members: <%= client.children_members %></small>
+                  <small>Member Total Deposits: <%= client.children.present? ? client.children_total_deposit : "None" %></small>
+                </div>
+
+                <div class="d-flex flex-column">
+                  <small>Coins: <%= client.coins %></small>
+                  <small>Total Used Coins: Not yet supported</small>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+
+    </div>
+
+
     </div>
   </content>
 
