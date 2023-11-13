@@ -9,6 +9,6 @@
         <%= link_to 'Sign out', destroy_admin_user_session_path, data: { 'turbo-method': :delete } %>
       <% end %>
     </li>
-    <li class="dropdown-item"><a href="">Item List</a></li>
+    <li class="dropdown-item"><%= link_to 'Item List', admin_items_index_path %></li>
   </ul>
 </div>
