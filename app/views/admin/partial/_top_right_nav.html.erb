@@ -1,0 +1,14 @@
+<div class="change-language d-flex align-items-center" style="border-left: 1px solid black; border-right: 1px solid black; height: 100%; margin-right: 30px;">
+  <a href="" style="text-decoration: none; padding: 0 20px; color: black;">Change Language</a>
+</div>
+<div class="username d-flex justify-content-center align-items-center" style="margin-right: 30px;">
+  <button class="dropdown-toggle" data-bs-toggle="dropdown" style="border: none; background: white;">Username</button>
+  <ul class="dropdown-menu">
+    <li class="dropdown-item">
+      <% if admin_user_signed_in? %>
+        <%= link_to 'Sign out', destroy_admin_user_session_path, data: { 'turbo-method': :delete } %>
+      <% end %>
+    </li>
+    <li class="dropdown-item"><a href="">Item List</a></li>
+  </ul>
+</div>

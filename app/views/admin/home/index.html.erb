@@ -1,60 +1,14 @@
 <section class="admin-home-page p-10 d-flex justify-content-evenly" style="height: 100vh; width: 100vw; padding: 10px;" >
 
   <content class="left-column m-0" style="width: 20vw; min-width: 20vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh;">
-    <div class="top-row d-flex justify-content-center align-items-center" style="border: 1px solid black; width: inherit; padding: 0;">
-      <p style="margin: 0;">System Management</p>
-    </div>
-
-    <div class="accordion accordion-flush" id="accordionFlushExample" style="border: 1px solid black">
-      <div class="accordion-item" style="padding: 14px 20px;">
-        <a>Homepage</a>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-            Member Management
-          </button>
-        </h2>
-        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-          <ul style="margin: 10px; list-style: none">
-            <li style="margin: 10px"><a class="accordion-body h-25" style="text-decoration: none;">User List</a></li>
-            <li style="margin: 10px"><a class="accordion-body h-25" style="text-decoration: none;">User List</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-            Example 2 Management
-          </button>
-        </h2>
-        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-          <ul style="margin: 10px; list-style: none">
-            <li style="margin: 10px"><a class="accordion-body h-25" style="text-decoration: none;">Example 1</a></li>
-            <li style="margin: 10px"><a class="accordion-body h-25" style="text-decoration: none;">Example 2</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <%= render partial: 'admin/partial/side_nav' %>
   </content>
 
   <content class="right-column m-0" style="width: 80vw; min-width: 80vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh; ">
     <div class="top-row d-flex justify-content-end align-items-center" style="border: 1px solid black; width: auto; height: 5vh;">
-      <div class="change-language d-flex align-items-center" style="border-left: 1px solid black; border-right: 1px solid black; height: 100%; margin-right: 30px;">
-        <a href="" style="text-decoration: none; padding: 0 20px; color: black;">Change Language</a>
-      </div>
-      <div class="username d-flex justify-content-center align-items-center" style="margin-right: 30px;">
-        <button class="dropdown-toggle" data-bs-toggle="dropdown" style="border: none; background: white;">Username</button>
-        <ul class="dropdown-menu">
-          <li class="dropdown-item">
-            <% if admin_user_signed_in? %>
-              <%= link_to 'Sign out', destroy_admin_user_session_path, data: { 'turbo-method': :delete } %>
-            <% end %>
-          </li>
-          <li class="dropdown-item"><a href="">Item List</a></li>
-        </ul>
-      </div>
+      <%= render partial: 'admin/partial/top_right_nav' %>
     </div>
+
     <div class="bottom-row" style="padding: 10px; border: 1px solid black; height: auto;">
 
 
