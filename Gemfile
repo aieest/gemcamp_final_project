@@ -80,3 +80,5 @@ gem 'stimulus-rails'
 gem "carrierwave"
 
 gem "rqrcode"
+
+gem 'aasm'
