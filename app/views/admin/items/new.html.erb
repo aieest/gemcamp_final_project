@@ -1,0 +1,26 @@
+<section class="admin-new-item-page p-10 d-flex justify-content-evenly" style="height: 100vh; width: 100vw; padding: 10px;" >
+
+  <content class="left-column m-0" style="width: 20vw; min-width: 20vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh;">
+    <%= render partial: 'admin/partial/side_nav' %>
+  </content>
+
+  <content class="right-column m-0" style="width: 80vw; min-width: 80vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh; ">
+    <div class="top-row d-flex justify-content-end align-items-center" style="border: 1px solid black; width: auto; height: 5vh;">
+      <%= render partial: 'admin/partial/top_right_nav' %>
+    </div>
+
+    <div class="bottom-row" style="padding: 10px; border: 1px solid black; height: auto;">
+
+      <div class="d-flex flex-row justify-content-between align-items-center border-bottom" style="padding-right: 20px; padding-bottom: 10px">
+        <span class="fs-3 fw-semibold">Create new item</span>
+        <%= link_to 'Back', admin_items_index_path, class: "btn btn-primary me-2"%>
+      </div>
+
+      <div class="col-6 d-flex flex-column justify-content-center" style="margin: auto; padding-top: 10%;">
+        <%= render partial: 'form', locals: { item: @item, url: admin_items_path, method: :post } %>
+      </div>
+
+    </div>
+  </content>
+
+</section>

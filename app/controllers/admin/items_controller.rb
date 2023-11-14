@@ -52,6 +52,7 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(
       :image,
+
       :name,
       :quantity,
       :minimum_tickets,
