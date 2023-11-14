@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_13_111652) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_14_024207) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -64,6 +64,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_111652) do
     t.index ["province_id"], name: "index_addresses_on_province_id"
     t.index ["region_id"], name: "index_addresses_on_region_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "categories", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "item_category_ships", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_item_category_ships_on_category_id"
+    t.index ["post_id"], name: "index_item_category_ships_on_post_id"
   end
 
   create_table "items", charset: "utf8mb4", force: :cascade do |t|
