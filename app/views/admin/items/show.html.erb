@@ -1,0 +1,47 @@
+<section class="admin-show-item-page p-10 d-flex justify-content-evenly" style="height: 100vh; width: 100vw; padding: 10px;" >
+
+  <content class="left-column m-0" style="width: 20vw; min-width: 20vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh;">
+    <%= render partial: 'admin/partial/side_nav' %>
+  </content>
+
+  <content class="right-column m-0" style="width: 80vw; min-width: 80vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh; ">
+    <div class="top-row d-flex justify-content-end align-items-center" style="border: 1px solid black; width: auto; height: 5vh;">
+      <%= render partial: 'admin/partial/top_right_nav' %>
+    </div>
+
+    <div class="bottom-row" style="padding: 10px; border: 1px solid black; height: auto;">
+
+      <div class="p-4 w-100 mb-4">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+          <div class="d-flex flex-row align-items-center">
+            <span class="fs-3 fw-semibold"><%= @item.name %></span>
+            <%= link_to 'Back', admin_items_index_path, class: "btn btn-primary me-2"%>
+          </div>
+
+          <div class="d-flex flex-row align-items-center">
+            <%= link_to 'Edit', edit_admin_item_path(@item), class: "btn btn-primary me-2" %>
+            <%= button_to 'Delete', admin_item_path(@item), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger w-100" %>
+          </div>
+
+        </div>
+      </div>
+
+        <div class="w-100 border-bottom my-2"></div>
+
+        <div class="d-flex flex-row">
+          <%= image_tag @item.image.url, class: 'me-4', style: 'object-fit: cover; width: 300px; height: 300px;' if @item.image.present? %>
+          <div class="d-flex flex-column">
+            <span>Quantity: <%= @item.quantity %></span>
+            <span>Minimum tickets: <%= @item.minimum_tickets %></span>
+            <span>State: <%= @item.state ? @item.state : "None" %></span>
+            <span>Batch count: <%= @item.batch_count %></span>
+            <span>Online at: <%= @item.online_at ? @item.online_at : "None" %></span>
+            <span>Offline at: <%= @item.offline_at ? @item.offline_at : "None" %></span>
+            <span>Start at: <%= @item.start_at ? @item.start_at : "None" %></span>
+            <span>Status: <%= @item.status %></span>
+          </div>
+        </div>
+    </div>
+  </content>
+
+</section>
