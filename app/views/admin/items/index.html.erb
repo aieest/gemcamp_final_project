@@ -22,7 +22,7 @@
               <div class="row row-cols-*">
                 <% @items.each do |item| %>
                   <div class="col">
-                    <%= render partial: 'admin/shared/item_card', locals: { item: item } %>
+                    <%= render partial: 'admin/items/item_card', locals: { item: item } %>
                   </div>
                 <% end %>
               </div>
