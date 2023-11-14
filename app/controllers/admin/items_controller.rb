@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin_user!
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :start, :end, :pause, :cancel]
 
   def index
     @admin_user = current_admin_user
@@ -40,6 +40,29 @@ class Admin::ItemsController < ApplicationController
   def destroy
     @item.destroy
     flash[:notice] = 'Item destroyed successfully'
+    redirect_to admin_items_path
+  end
+
+  def start
+    @item.start! if @item.may_start?
+    redirect_to admin_items_path
+  end
+
+  def pause
+
+    @item.pause! if @item.may_pause?
+    redirect_to admin_items_path
+  end
+
+  def end
+
+    @item.end! if @item.may_end?
+    redirect_to admin_items_path
+  end
+
+  def cancel
+
+    @item.cancel! if @item.may_cancel?
     redirect_to admin_items_path
   end
 

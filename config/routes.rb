@@ -8,7 +8,14 @@ Rails.application.routes.draw do
   constraints(AdminDomainConstraint.new) do
     namespace :admin do
       root "home#index"
-      resources :items
+      resources :items, except: :show do
+        member do
+          post 'start'
+          post 'pause'
+          post 'end'
+          post 'cancel'
+        end
+      end
       resources :categories, except: :show
     end
 
@@ -22,7 +29,6 @@ Rails.application.routes.draw do
       root "home#index"
       get 'me', to: 'me#index', as: 'me'
       resources :address
-
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {
