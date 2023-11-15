@@ -32,6 +32,25 @@
     <%= f.text_field :batch_count, class: 'form-control', placeholder: 'Set batch count' %>
   </div>
 
+  <div class="field">
+    <%= f.label 'Online At' %>
+    <%= f.date_field :online_at, value: params[:online_at], class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Offline At' %>
+    <%= f.date_field :offline_at, value: params[:offline_at], class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Start At' %>
+    <%= f.date_field :start_at, value: params[:start_at], class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Status' %>
+    <%= f.select :status, options_for_select(Item.statuses.keys.map { |status| [status.humanize, status] }) %>
+  </div>
 
   <%= f.submit 'Save item', class: 'btn btn-success w-100' %>
 <% end %>

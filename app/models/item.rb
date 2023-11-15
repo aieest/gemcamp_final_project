@@ -9,16 +9,18 @@ class Item < ApplicationRecord
   validates :minimum_tickets, presence: true
   # validates :state, presence: true
   validates :batch_count, presence: true
-  # validates :online_at, presence: true
+  validates :online_at, presence: true
   validates :offline_at, presence: true
-  # validates :start_at, presence: true
+  validates :start_at, presence: true
   # validates :status, presence: true
+  has_many :item_category_ships
+  has_many :categories, through: :item_category_ships
 
   def destroy
     update(deleted_at: Time.current)
   end
 
-  has_many :item_category_ships
+  has_many :item_category_ships, dependent: :restrict_with_error
   has_many :categories, through: :item_category_ships
 
   enum status: { inactive: 0, active: 1 }
@@ -50,7 +52,7 @@ class Item < ApplicationRecord
   private
 
   def before_start
-    unless quantity.to_i.positive? && Time.current < offline_at && status == 'active'
+    unless quantity.to_i.positive? && (offline_at.nil? || Time.current < offline_at) && status.to_s == 'active'
       return false
     end
     true

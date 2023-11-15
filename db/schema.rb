@@ -73,12 +73,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_14_024207) do
   end
 
   create_table "item_category_ships", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "post_id"
+    t.bigint "item_id"
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_item_category_ships_on_category_id"
-    t.index ["post_id"], name: "index_item_category_ships_on_post_id"
+    t.index ["item_id"], name: "index_item_category_ships_on_item_id"
   end
 
   create_table "items", charset: "utf8mb4", force: :cascade do |t|

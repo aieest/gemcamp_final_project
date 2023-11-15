@@ -5,6 +5,7 @@ class Admin::ItemsController < ApplicationController
   def index
     @admin_user = current_admin_user
     @items = Item.all
+    @categories = Category.all
   end
 
 
