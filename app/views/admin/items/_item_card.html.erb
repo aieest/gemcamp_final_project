@@ -11,7 +11,6 @@
     <small>Category: <%= item.categories.pluck(:name).join(',') %></small>
     <small>State: <%= item.state %></small>
     <div class="w-100 border-bottom my-2"></div>
-    <%= link_to 'Show', admin_item_path(item), class: 'btn btn-primary btn-sm w-100 mb-2' %>
     <%= link_to 'Edit', edit_admin_item_path(item), class: 'btn btn-primary btn-sm w-100 mb-2' %>
     <%= button_to 'Delete', admin_item_path(item), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger w-100" %>
     <div class="container">
