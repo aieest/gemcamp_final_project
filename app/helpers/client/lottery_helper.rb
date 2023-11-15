@@ -1,2 +1,3 @@
 module Client::LotteryHelper
+
 end
