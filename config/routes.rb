@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get 'items/index'
   end
   namespace :client do
+    get 'lottery/index'
     get 'invite/index'
   end
   constraints(AdminDomainConstraint.new) do
