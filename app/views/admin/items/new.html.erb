@@ -16,7 +16,7 @@
         <%= link_to 'Back', admin_items_index_path, class: "btn btn-primary me-2"%>
       </div>
 
-      <div class="col-6 d-flex flex-column justify-content-center" style="margin: auto; padding-top: 10%;">
+      <div class="col-6 d-flex flex-column justify-content-center" style="margin: auto;">
         <%= render partial: 'form', locals: { item: @item, url: admin_items_path, method: :post } %>
       </div>
 

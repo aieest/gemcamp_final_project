@@ -47,6 +47,13 @@
     <%= f.date_field :start_at, value: params[:start_at], class: 'form-control' %>
   </div>
 
+  <% if Category.all.present? %>
+    <div class="form-group w-100 mb-2">
+      <%= f.label :categories, class: 'form-label' %>
+      <%= f.collection_select :category_ids, Category.all, :id, :name, {placeholder: 'Select category', include_blank: false}, class: 'select2 w-100', multiple: 'multiple' %>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.label 'Status' %>
     <%= f.select :status, options_for_select(Item.statuses.keys.map { |status| [status.humanize, status] }) %>

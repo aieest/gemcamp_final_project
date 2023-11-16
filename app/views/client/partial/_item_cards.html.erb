@@ -1,0 +1,11 @@
+<div class="item-cards flex-column justify-content-center" style="width: 60vw; margin: auto;">
+  <div class="item-cards d-flex justify-content-between" style="margin: auto;">
+
+    <% @items.each do |item| %>
+    <div class="card-sample d-grid border" style= "text-align: center; width: 12vw; height: 20vh; place-items: center">
+      <h3><%= item.name %></h3>
+      <p>Quantity: <%= item.quantity %></p>
+    </div>
+    <% end %>
+  </div>
+</div>

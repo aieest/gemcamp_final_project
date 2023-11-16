@@ -76,7 +76,6 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(
       :image,
-
       :name,
       :quantity,
       :minimum_tickets,
@@ -86,6 +85,9 @@ class Admin::ItemsController < ApplicationController
       :offline_at,
       :start_at,
       :status,
-      :deleted_at)
+      :deleted_at,
+      category_ids: []
+      )
+
   end
 end

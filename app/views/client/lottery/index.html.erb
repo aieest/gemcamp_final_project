@@ -4,16 +4,12 @@
     <%= render partial: 'client/partial/top_nav' %>
   </div>
 
-  <div class="container mt-4 mb-5">
+  <div class="container mt-4 mb-5 d-flex flex-column justify-content-around" style="height: 75vh;">
     <%= render partial: 'client/partial/banner_image' %>
 
-    <div class="row row-cols-2 w-100 mt-2">
-      <% @items.each do |item| %>
-        <div class="col w-50 mb-4">
-          <%= image_tag item.image.url, style: 'object-fit: cover;', class: 'w-100 h-100' if item.image.present? %>
-        </div>
-      <% end %>
-    </div>
+    <h1 style="margin-top: 50px;">Lottery Index</h1>
+
+    <%= render partial: 'client/partial/item_cards' %>
   </div>
 
   <div class="bottom-nav w-100 border d-flex justify-content-center" style="place-items: center">
