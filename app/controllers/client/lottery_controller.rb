@@ -5,6 +5,11 @@ class Client::LotteryController < ApplicationController
     @selected_category = params[:category_id] ? Category.find(params[:category_id]) : nil
     @items = @selected_category ? @selected_category.items : Item.includes(:categories).all
     @items = @items.where("online_at < ? AND offline_at > ?", Time.current, Time.current).active.starting
+
+    respond_to do |format|
+      format.html
+      format.js # Assuming you want to handle the asynchronous filtering
+    end
   end
 
   def skip_authentication

@@ -1,0 +1,8 @@
+<div class="item-category-filters d-flex flex-row" style="">
+  <%= link_to "All", client_lottery_index_path, class: 'btn btn-outline-secondary', style: 'margin-right: 10px' %>
+
+  <% @categories.each do |category| %>
+    <%= link_to category.name, client_lottery_index_path(category_id: category.id), class: 'category-filter-button btn btn-outline-secondary', style: 'margin-right: 10px' %>
+
+  <% end %>
+</div>
