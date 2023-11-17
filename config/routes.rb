@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'tickets/index'
     get 'items/index'
   end
   namespace :client do
@@ -18,6 +19,12 @@ Rails.application.routes.draw do
         end
       end
       resources :categories, except: :show
+      resources :tickets, only: :index do
+        member do
+          post 'cancel'
+        end
+      end
+
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {

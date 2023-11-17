@@ -1,0 +1,50 @@
+<section class="admin-ticket-page p-10 d-flex justify-content-evenly" style="height: 100vh; width: 100vw; padding: 10px;" >
+
+  <content class="left-column m-0" style="width: 20vw; min-width: 20vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh;">
+    <%= render partial: 'admin/partial/side_nav' %>
+  </content>
+
+  <content class="right-column m-0" style="width: 80vw; min-width: 80vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh; ">
+    <div class="top-row d-flex justify-content-end align-items-center" style="border: 1px solid black; width: auto; height: 5vh;">
+      <%= render partial: 'admin/partial/top_right_nav' %>
+    </div>
+
+    <div class="bottom-row" style="padding: 10px; border: 1px solid black; height: auto; width: 100%">
+
+      <h3>Ticket List</h3>
+
+      <div class="w-100 border-bottom my-2"></div>
+
+      <%= form_with url: admin_tickets_path, method: :get, class: 'w-100 form d-flex flex-row align-items-center justify-content-between mb-2', data: { turbo: false } do |f| %>
+        <div class="form-group w-100 me-2">
+          <%= f.text_field :search, value: params[:search], placeholder: "Search...", class: "form-control form-control-sm w-100" %>
+        </div>
+
+        <div class="form-group w-100 d-flex flex-row align-items-center me-2">
+          <span class="px-2">From: </span>
+          <%= f.date_field :start_date, value: params[:start_date], class: 'form-control form-control-sm'%>
+          <span class="px-2">to</span>
+          <%= f.date_field :end_date, value: params[:end_date], class: "form-control form-control-sm" %>
+        </div>
+
+        <div class="form-group me-2 w-100">
+          <%= f.collection_select :state, @states, :to_s, ->(state) { state.to_s.humanize }, {prompt: 'Filter state...', include_blank: false, selected: params[:state]  }, class: 'form-control form-control-sm w-100' %>
+        </div>
+
+        <%= f.submit 'Filter', class: 'btn btn-sm btn-primary me-2' %>
+        <%= link_to 'Reset', admin_tickets_path, class: 'btn btn-sm btn-danger' %>
+      <% end %>
+      <% if @tickets.present? %>
+        <div class="d-flex flex-column">
+          <% @tickets.each_with_index do |ticket, index| %>
+            <%= render partial: 'admin/partial/ticket_card', locals: { ticket: ticket, index: index } %>
+          <% end %>
+        </div>
+      <% else %>
+        <h3 class="text-secondary">No Tickets</h3>
+      <% end %>
+
+    </div>
+  </content>
+
+</section>

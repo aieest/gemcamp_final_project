@@ -17,11 +17,17 @@ class Item < ApplicationRecord
   has_many :categories, through: :item_category_ships
 
   def destroy
-    update(deleted_at: Time.current)
+    if tickets.present?
+      errors.add(:base, "Cannot delete item with associated tickets")
+      false
+    else
+      update(deleted_at: Time.current)
+    end
   end
 
   has_many :item_category_ships, dependent: :restrict_with_error
   has_many :categories, through: :item_category_ships
+  has_many :tickets
 
   enum status: { inactive: 0, active: 1 }
 
@@ -45,7 +51,7 @@ class Item < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:starting, :paused], to: :cancelled
+      transitions from: :starting, to: :cancelled, after: [:revert_quantity, :cancel_all_tickets]
     end
   end
 
@@ -57,6 +63,13 @@ class Item < ApplicationRecord
     end
     true
   end
+
+  def cancel_all_tickets
+    tickets.each do |ticket|
+      ticket.cancel!
+    end
+  end
+
 
   def after_start
     self.quantity -= 1
