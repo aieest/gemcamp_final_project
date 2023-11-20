@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       root "home#index"
       get 'me', to: 'me#index', as: 'me'
       resources :address
-      resources 'client/lottery', as: 'lottery', path: 'lottery', only: :index
+      resources :lottery, only: [:index, :show]
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {

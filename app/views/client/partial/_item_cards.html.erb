@@ -2,17 +2,18 @@
   <div class="item-cards d-flex justify-content-between" style="margin: auto;">
 
     <% @items.each do |item| %>
-      <div class="card-sample d-grid border" style="text-align: center; width: 12vw; height: 20vh; place-items: center; position: relative;">
-        <!-- Display the item image -->
-        <%= image_tag(item.image.url, class: "item-image", style: "max-width: 100%; max-height: 70%; position: absolute; top: 0; left: 0;") %>
 
-        <!-- Display item details on top of the image -->
+      <%= link_to client_lottery_path(item), class: 'card-sample d-grid border', style: 'text-align: center; width: 12vw; height: 20vh; place-items: center; position: relative; color: black;' do %>
+        <%= image_tag item.image.url, style: 'object-fit: cover;', class: 'w-100 h-100', style: 'max-width: 100%; max-height: 70%; position: absolute; top: 0; left: 0;' if item.image.present? %>
+
+
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
           <h3><%= item.name %></h3>
           <p>Quantity: <%= item.quantity %></p>
           <p><%= item.category_ids %></p>
         </div>
-      </div>
+      <% end %>
+
     <% end %>
   </div>
 </div>

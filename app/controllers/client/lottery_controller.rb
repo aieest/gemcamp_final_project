@@ -1,4 +1,7 @@
 class Client::LotteryController < ApplicationController
+  # before_action :skip_authentication, only: [:lottery, :show]
+  before_action :set_item, only: :show
+
   def index
     @user = current_client_user
     @categories = Category.all
@@ -12,12 +15,23 @@ class Client::LotteryController < ApplicationController
     end
   end
 
+  def show
+    # @user = current_client_user
+    @progress = 25
+  end
+
+  private
+
   def skip_authentication
 
-    unless user_client_signed_in?
+    unless client_user_signed_in?
       return
     end
 
-    redirect_to root_path, notice: 'You are already signed in.'
+    redirect_to client_lottery_index_path, notice: 'You are already signed in.'
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
