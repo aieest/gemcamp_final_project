@@ -16,6 +16,7 @@ class Address < ApplicationRecord
   belongs_to :city
   belongs_to :barangay
   validate :validate_address_count
+  has_many :winners
 
   scope :default, -> { find_by(is_default: true) }
 

@@ -28,6 +28,8 @@ class Item < ApplicationRecord
   has_many :item_category_ships, dependent: :restrict_with_error
   has_many :categories, through: :item_category_ships
   has_many :tickets
+  has_many :winners
+
 
   enum status: { inactive: 0, active: 1 }
 
