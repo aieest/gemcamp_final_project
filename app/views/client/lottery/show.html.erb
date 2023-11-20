@@ -34,7 +34,7 @@
       <% if current_client_user && @user_tickets.present? %>
         <div class="card w-100">
           <span class="card-header">Serial Number</span>
-          <div class="d-flex flex-column w-100">
+          <div class="d-flex flex-column w-100"  style="overflow-y: scroll; max-height: 150px;">
             <% @user_tickets.each_with_index do |ticket, index| %>
               <span class="border-bottom w-100 py-2 px-4 fw-semibold"><%= ticket.serial_number %></span>
             <% end %>

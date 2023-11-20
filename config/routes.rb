@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       get 'me', to: 'me#index', as: 'me'
       resources :address
       resources :lottery, only: [:index, :show]
-      resources 'client/tickets', as: 'submit_tickets', path: 'submit_tickets', only: [:create]
+      resources :tickets, as: 'submit_tickets', path: 'submit_tickets', only: [:create]
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {
