@@ -12,3 +12,6 @@ application.register("location", LocationController)
 
 import Select2Controller from "./select2_controller"
 application.register("select2", Select2Controller)
+
+import TicketController from "./ticket_controller"
+application.register("ticket", TicketController)

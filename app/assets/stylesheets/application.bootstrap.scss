@@ -1,2 +1,16 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import "select2/dist/css/select2";
+
+/* Add a class, e.g., 'no-arrows', to the input field */
+.no-arrows {
+  /* Hide the up and down arrows for number input in most browsers */
+  -moz-appearance: textfield;
+}
+
+/* Remove the default arrow styles for number input in Webkit browsers */
+.no-arrows::-webkit-inner-spin-button,
+.no-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

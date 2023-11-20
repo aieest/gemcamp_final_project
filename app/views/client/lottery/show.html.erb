@@ -5,12 +5,9 @@
   </div>
 
   <div class="container mt-4 mb-5 d-flex flex-column justify-content-around" style="height: 75vh;">
-    <%= render partial: 'client/partial/banner_image' %>
 
-    <h1 style="margin-top: 50px;"><%= @item.name %></h1>
-
-    <div class="container d-flex justify-content-center mb-5">
-      <div class="card mt-2" style="width: 300px">
+    <div class="container d-flex flex-column mb-5">
+      <div class="card mt-2" style="width: 300px; margin: auto;">
         <%= image_tag @item.image.url, class: 'card-img-top', style: 'width: 300px' %>
         <div class="card-body">
           <h4 style="text-align: center"><%= @item.name %></h4>
@@ -19,6 +16,33 @@
           </div>
         </div>
       </div>
+
+
+      <%= form_with url: client_submit_tickets_path, method: :post, class: 'mb-2' do |f| %>
+        <div class="input-group mb-2" data-controller="ticket">
+          <button class="btn btn-outline-secondary" type="button" data-action="click->ticket#decrease">
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <%= f.number_field :tickets, class: 'form-control text-center no-arrows', data: {ticket_target: "tickets"} %>
+          <button class="btn btn-outline-secondary" type="button" data-action="click->ticket#increase">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+
+        <%= f.submit 'Submit', class: 'btn btn-success w-100'%>
+      <% end %>
+      <% if current_client_user && @user_tickets.present? %>
+        <div class="card w-100">
+          <span class="card-header">Serial Number</span>
+          <div class="d-flex flex-column w-100">
+            <% @user_tickets.each_with_index do |ticket, index| %>
+              <span class="border-bottom w-100 py-2 px-4 fw-semibold"><%= ticket.serial_number %></span>
+            <% end %>
+          </div>
+
+        </div>
+      <% end %>
+
 
     </div>
 

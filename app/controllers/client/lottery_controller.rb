@@ -18,6 +18,7 @@ class Client::LotteryController < ApplicationController
   def show
     # @user = current_client_user
     @progress = 25
+    @user_tickets = Ticket.where(user: current_client_user, item: @item, batch_count: @item.batch_count)
   end
 
   private
