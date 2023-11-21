@@ -49,7 +49,7 @@ class Item < ApplicationRecord
     end
 
     event :end do
-      transitions from: :starting, to: :ended
+      transitions from: :starting, to: :ended, guard: :exceeded_max_bets?, after: :set_winner
     end
 
     event :cancel do
@@ -58,6 +58,31 @@ class Item < ApplicationRecord
   end
 
   private
+
+  def exceeded_max_bets?
+    return true if tickets.pending.count >= minimum_tickets
+    errors.add(:base, 'Have not reached minimum tickets.')
+    false
+  end
+
+  def set_winner
+    winning_ticket = tickets.pending.sample
+    tickets.pending.each do |ticket|
+      if ticket == winning_ticket
+        ticket.win!
+      else
+        ticket.lose!
+      end
+    end
+
+    winner = winners.build do |w|
+      w.ticket = winning_ticket
+      w.user = winning_ticket.user
+      w.address = winning_ticket.user.addresses.default
+      w.item_batch_count = batch_count
+    end
+    winner.save
+  end
 
   def before_start
     unless quantity.to_i.positive? && (offline_at.nil? || Time.current < offline_at) && status.to_s == 'active'
