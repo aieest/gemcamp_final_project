@@ -1,6 +1,7 @@
 class Ticket < ApplicationRecord
   validates :batch_count, presence: true
   validate :user_balance_enough?
+  validate :user_has_default_address?
   after_create :assign_serial_number
   after_create :deduct_coin_to_user
   before_destroy :disable_destroy
@@ -47,6 +48,12 @@ class Ticket < ApplicationRecord
   def user_balance_enough?
     return true if user.coins > 0
     errors.add(:base, 'You do not have enough coins.')
+    false
+  end
+
+  def user_has_default_address?
+    return true if user.addresses.default.present?
+    errors.add(:base, 'You don\'t have default address. Please set your address first.')
     false
   end
 

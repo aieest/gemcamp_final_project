@@ -23,7 +23,7 @@
           <button class="btn btn-outline-secondary" type="button" data-action="click->ticket#decrease">
             <i class="fa-solid fa-minus"></i>
           </button>
-          <%= f.number_field :tickets, class: 'form-control text-center no-arrows', data: {ticket_target: "tickets"} %>
+          <%= f.number_field :tickets, class: 'form-control text-center no-arrows', data: {ticket_target: "tickets"}, value: 1 %>
           <button class="btn btn-outline-secondary" type="button" data-action="click->ticket#increase">
             <i class="fa-solid fa-plus"></i>
           </button>
