@@ -36,7 +36,11 @@ Rails.application.routes.draw do
     namespace :client do
       root "home#index"
       get 'me', to: 'me#index', as: 'me'
-      resources :address
+      resources :address do
+        member do
+          patch 'default'
+        end
+      end
       resources :lottery, only: [:index, :show]
       resources :tickets, as: 'submit_tickets', path: 'submit_tickets', only: [:create]
     end

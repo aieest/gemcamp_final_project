@@ -15,7 +15,7 @@ class Address < ApplicationRecord
   belongs_to :province
   belongs_to :city
   belongs_to :barangay
-  validate :validate_address_count
+  validate :validate_address_count, on: :create
   has_many :winners
 
   scope :default, -> { find_by(is_default: true) }
@@ -28,4 +28,6 @@ class Address < ApplicationRecord
       false
     end
   end
+
+
 end

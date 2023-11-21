@@ -7,10 +7,10 @@
   <div class="container mt-4 mb-5">
     <div class="d-flex flex-row align-items-center">
       <%= link_to 'Back', client_address_index_path, class: "btn btn-primary me-2"%>
-      <span class="fs-3 fw-semibold">Add new address</span>
+      <span class="fs-3 fw-semibold">Edit Address</span>
     </div>
 
-    <%= render partial: 'form', locals: { address: @address, url: client_address_index_path(@address), method: :patch }%>
+    <%= render partial: 'form', locals: { address: @address, url: client_address_path(@address), method: :patch }%>
   </div>
 
   <div class="bottom-nav w-100 border d-flex justify-content-center" style="place-items: center">

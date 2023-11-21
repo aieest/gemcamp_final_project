@@ -25,9 +25,10 @@
             <div class="card-header d-flex flex-row justify-content-between">
               <span><%= address.name %> <em><%= "(Default address)" if address.is_default? %></em></span>
               <div id="buttons" class="d-flex flex-row">
-                <%= form_with model: address, url: client_address_path(address), method: :patch do |f| %>
+                <%= form_with model: address, url: default_client_address_path(address), method: :patch do |f| %>
                   <%= f.submit 'Set as default', class: "btn btn-sm btn-primary me-2 #{"disabled" if address.is_default?}"%>
                 <% end %>
+
                 <%= link_to 'Edit', edit_client_address_path(address), class: "btn btn-sm btn-primary me-2" %>
                 <%= button_to 'Delete', client_address_path(address), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
               </div>
