@@ -24,7 +24,7 @@ Rails.application.routes.draw do
           post 'cancel'
         end
       end
-
+      resources :winners, as: 'winners', path: 'winners', only: [:index, :update]
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {

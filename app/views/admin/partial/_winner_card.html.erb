@@ -1,0 +1,32 @@
+<a class="form-control border nav-link mb-2 p-2 w-100" data-bs-toggle="collapse" href="#winner_detail_<%= index + 1 %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+  <%= winner.ticket.serial_number %> | <%= winner.user.email %>
+</a>
+
+<div class="collapse mb-2" id="winner_detail_<%= index + 1 %>">
+  <div class="card card-body flex-row pe-4 justify-content-between ">
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-column h-100 me-4">
+        <small>Serial number: <%= winner.ticket.serial_number %></small>
+        <small>State: <%= winner.state.humanize %></small>
+        <small>Owner: <%= winner.user.email %></small>
+        <small>Created at: <%= winner.created_at %></small>
+      </div>
+
+      <div class="d-flex flex-column h-100 me-2">
+        <small>Item: <%= winner.item.name %></small>
+        <small>Batch count: <%= winner.item_batch_count %></small>
+        <small>Address: <%= winner.address.city.name %>, <%= winner.address.province.name %> </small>
+        <small>Paid by: <%= winner.paid? ? winner.admin : 'None' %></small>
+      </div>
+    </div>
+
+    <%= form_tag admin_winner_path(winner), method: :patch, data: {turbo: false} do %>
+      <%= submit_tag 'Submit', class:'btn btn-sm btn-danger' if winner.may_submit? %>
+      <%= submit_tag 'Pay', class:'btn btn-sm btn-danger' if winner.may_pay? %>
+      <%= submit_tag 'Ship', class:'btn btn-sm btn-danger' if winner.may_ship? %>
+      <%= submit_tag 'Deliver', class:'btn btn-sm btn-danger' if winner.may_deliver? %>
+      <%= submit_tag 'Publish', class:'btn btn-sm btn-danger' if winner.may_publish? %>
+      <%= submit_tag 'Remove Publish', class:'btn btn-sm btn-danger' if winner.may_remove_publish? %>
+    <% end %>
+  </div>
+</div>
