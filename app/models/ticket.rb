@@ -9,6 +9,7 @@ class Ticket < ApplicationRecord
   belongs_to :item
   belongs_to :user
   has_many :winners
+
   include AASM
 
   aasm column: :state do
@@ -46,13 +47,13 @@ class Ticket < ApplicationRecord
   end
 
   def user_balance_enough?
-    return true if user.coins > 0
+    return true if user.coins > 0 || user.admin?
     errors.add(:base, 'You do not have enough coins.')
     false
   end
 
   def user_has_default_address?
-    return true if user.addresses.default.present?
+    return true if user.addresses.default.present? || user.admin?
     errors.add(:base, 'You don\'t have default address. Please set your address first.')
     false
   end

@@ -6,14 +6,7 @@ class Admin::TicketsController < ApplicationController
     @states = Ticket.aasm.states.map(&:name)
 
     if params[:search].present?
-      filtered_serial_number = @tickets.where('serial_number LIKE :search', search: "%#{params[:search]}%")
-      @tickets = filtered_serial_number if filtered_serial_number.present?
-
-      filtered_item_name = @tickets.joins(:item).where("items.name LIKE :search", search: "%#{params[:search]}%")
-      @tickets = filtered_item_name if filtered_item_name.present?
-
-      filtered_email = @tickets.joins(:user).where("users.email LIKE :search", search: "%#{params[:search]}%")
-      @tickets = filtered_email if filtered_email.present?
+      @tickets = @tickets.joins(:item, :user).where("serial_number LIKE :search OR items.name LIKE :search OR users.email LIKE :search", search: "%#{params[:search]}%")
     end
 
     if params[:start_date].present? && params[:end_date].present?

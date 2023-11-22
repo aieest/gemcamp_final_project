@@ -15,7 +15,7 @@
       <div class="d-flex flex-column h-100 me-2">
         <small>Item: <%= winner.item.name %></small>
         <small>Batch count: <%= winner.item_batch_count %></small>
-        <small>Address: <%= winner.address.city.name %>, <%= winner.address.province.name %> </small>
+        <small>Address: <%= full_address(winner.address) %> </small>
         <small>Paid by: <%= winner.paid? ? winner.admin : 'None' %></small>
       </div>
     </div>
