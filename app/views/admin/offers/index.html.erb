@@ -1,0 +1,35 @@
+<section class="admin-home-page p-10 d-flex justify-content-evenly" style="height: 100vh; width: 100vw; padding: 10px;" >
+
+  <content class="left-column m-0" style="width: 20vw; min-width: 20vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh;">
+    <%= render partial: 'admin/partial/side_nav' %>
+  </content>
+
+  <content class="right-column m-0" style="width: 80vw; min-width: 80vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh; ">
+    <div class="top-row d-flex justify-content-end align-items-center" style="border: 1px solid black; width: auto; height: 5vh;">
+      <%= render partial: 'admin/partial/top_right_nav' %>
+    </div>
+
+    <div class="bottom-row" style="padding: 10px; border: 1px solid black; height: auto; width: 100%">
+      <div class="d-flex flex-row justify-content-between align-items-center mx-2">
+        <h3>Offer List</h3>
+        <%= link_to 'Add new offer', new_admin_offer_path, class: 'btn btn-primary' %>
+      </div>
+
+      <div class="w-100 border-bottom my-2"></div>
+
+      <% if @offers.present? %>
+        <div class="row row-cols-*">
+          <% @offers.each do |offer| %>
+            <div class="col" style="max-width: 260px;">
+              <%= render partial: 'admin/partial/offer_card', locals: { offer: offer } %>
+            </div>
+          <% end %>
+        </div>
+
+      <% else %>
+        <h5 class="text-secondary">No Offers created</h5>
+      <% end %>
+    </div>
+  </content>
+
+</section>

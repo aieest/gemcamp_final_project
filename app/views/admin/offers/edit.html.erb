@@ -1,0 +1,22 @@
+<section class="admin-home-page p-10 d-flex justify-content-evenly" style="height: 100vh; width: 100vw; padding: 10px;" >
+
+  <content class="left-column m-0" style="width: 20vw; min-width: 20vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh;">
+    <%= render partial: 'admin/partial/side_nav' %>
+  </content>
+
+  <content class="right-column m-0" style="width: 80vw; min-width: 80vw; height: 5vh; display: grid; grid-template-rows: 5vh 90vh; ">
+    <div class="top-row d-flex justify-content-end align-items-center" style="border: 1px solid black; width: auto; height: 5vh;">
+      <%= render partial: 'admin/partial/top_right_nav' %>
+    </div>
+
+    <div class="bottom-row" style="padding: 10px; border: 1px solid black; height: auto; width: 100%">
+      <div class="d-flex flex-row align-items-center">
+        <%= link_to 'Back', admin_offers_path, class: "btn btn-primary me-2"%>
+        <span class="fs-3 fw-semibold">Edit offer</span>
+      </div>
+      <div class="w-100 border-bottom mx-2"></div>
+      <%= render partial: 'form', locals: { offer: @offer, url: admin_offer_path(@offer), method: :patch } %>
+    </div>
+  </content>
+
+</section>

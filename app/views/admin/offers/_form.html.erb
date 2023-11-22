@@ -1,0 +1,41 @@
+<%= form_with model: offer, url: url, method: method, data: { controller: 'select2', turbo: 'false' }, class: 'form mt-2' do |f| %>
+  <% if offer.errors.any? %>
+    <ul>
+      <% offer.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="form-group mb-2">
+    <%= f.label :image, class: "form-label" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="form-group w-100 mb-2">
+    <%= f.label :name, class: 'form-label' %>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Offer name' %>
+  </div>
+
+  <div class="form-group w-100 mb-2">
+    <%= f.label :amount, class: 'form-label' %>
+    <%= f.text_field :amount, class: 'form-control', placeholder: 'Set amount' %>
+  </div>
+
+  <div class="form-group w-100 mb-2">
+    <%= f.label :coin, class: 'form-label' %>
+    <%= f.text_field :coin, class: 'form-control', placeholder: 'Set coins' %>
+  </div>
+
+  <div class="input-group w-100 mb-2">
+    <%= f.label :set_status, class: 'input-group-text '%>
+    <div class="form-control">
+      <%= f.radio_button :status, :inactive, class: 'form-check-input' %>
+      <%= f.label :inactive, class: 'form-check-label me-2' %>
+      <%= f.radio_button :status, :active, class: 'form-check-input' %>
+      <%= f.label :active, class: 'form-check-label' %>
+    </div>
+  </div>
+
+  <%= f.submit 'Save offer', class: 'btn btn-success w-100 mt-2' %>
+<% end %>
