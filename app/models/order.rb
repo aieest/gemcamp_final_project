@@ -65,7 +65,7 @@ class Order < ApplicationRecord
   end
 
   def has_enough_coins?
-    return true if user.coin >= coin
+    return true if user.coins >= coin
     errors.add(:base, 'User does not have enough coins.')
     false
   end

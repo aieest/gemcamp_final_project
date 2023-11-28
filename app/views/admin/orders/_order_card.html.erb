@@ -1,0 +1,25 @@
+<a class="form-control border nav-link mb-2 p-2 w-100" data-bs-toggle="collapse" href="#order_detail_<%= index + 1 %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+  <%= order.serial_number %> | <%= order.user.email %>
+</a>
+
+<div class="collapse mb-2" id="order_detail_<%= index + 1 %>">
+  <div class="card card-body flex-row pe-4 justify-content-between ">
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-column h-100 me-4">
+        <small>Serial number: <%= order.serial_number %></small>
+        <small>State: <%= order.state.humanize %></small>
+        <small>Owner: <%= order.user.email %></small>
+        <small>Created at: <%= order.created_at %></small>
+      </div>
+
+      <div class="d-flex flex-column h-100 me-2">
+        <small>Offer: <%= order.offer.name %></small>
+        <small>Amount: <%= order.amount %></small>
+        <small>Coin: <%= order.coin %></small>
+      </div>
+    </div>
+
+    <%= button_to 'Pay', admin_order_path(order, commit: 'Pay'), method: :patch, class: 'btn btn-sm btn-success w-100 mb-2' if order.may_pay? %>
+    <%= button_to 'Cancel', admin_order_path(order, commit: 'Cancel'), method: :patch, class: 'btn btn-sm btn-danger w-100 mb-2' if order.may_cancel? %>
+  </div>
+</div>

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       end
       resources :winners, as: 'winners', path: 'winners', only: [:index, :update]
       resources :offers, as: 'offers', path: 'offers'
+      resources :orders, as: 'orders', path: 'orders', only: [:index, :update]
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {
