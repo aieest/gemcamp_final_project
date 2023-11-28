@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'orders/index'
     get 'offers/index'
     get 'tickets/index'
     get 'items/index'
