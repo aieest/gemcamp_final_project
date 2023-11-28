@@ -1,0 +1,30 @@
+<section class="client-shop-home" style="height: 70vh;">
+
+  <div class="top-nav w-100" style="place-self: start">
+    <%= render partial: 'client/partial/top_nav' %>
+  </div>
+
+  <div class="container mt-4 mb-5 d-flex flex-column justify-content-around" style="height: 75vh;">
+
+    <%= render partial: 'client/partial/banner_image' %>
+
+    <section class="d-flex flex-column justify-content-center align-items-center w-100">
+      <div class="row row-cols-2 w-100 mt-2">
+        <% @offers.each do |offer| %>
+          <div class="mb-4 border" style="width: 400px;">
+            <%= link_to client_shop_path(offer), style: 'text-decoration: none;' do %>
+              <%= image_tag offer.image.url, style: 'object-fit: cover;', class: 'w-100 h-100' if offer.image.present? %>
+              <h5 style="text-align: center"><%= offer.name %></h5>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="bottom-nav w-100 border d-flex justify-content-center" style="place-items: center">
+    <%= render partial: 'client/partial/bottom_nav' %>
+  </div>
+
+</section>

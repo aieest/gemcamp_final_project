@@ -1,0 +1,31 @@
+<section class="client-shop-show" style="height: 70vh;">
+
+  <div class="top-nav w-100" style="place-self: start">
+    <%= render partial: 'client/partial/top_nav' %>
+  </div>
+
+  <div class="container mt-4 mb-5 d-flex flex-column justify-content-center" style="height: 75vh;">
+
+    <div class="card mt-2 mb-2 d-flex flex-column justify-content-center" style="width: 500px; margin: auto;">
+      <%= image_tag @offer.image.url, class: 'card-img-top' if @offer.image.url %>
+      <div class="card-body">
+        <h4><%= @offer.name %></h4>
+        <span>Amount: <%= @offer.amount %></span>
+        <span>Coins: <%= @offer.coin %></span>
+      </div>
+
+      <%= form_with url: 'client_purchase_orders_path',method: :post, class: 'mb-2' do |f| %>
+        <%= f.hidden_field :offer, value: @offer.id %>
+        <%= f.submit 'Purchase', class: 'btn btn-success w-100' %>
+      <% end %>
+
+    </div>
+
+
+  </div>
+
+  <div class="bottom-nav w-100 border d-flex justify-content-center" style="place-items: center">
+    <%= render partial: 'client/partial/bottom_nav' %>
+  </div>
+
+</section>

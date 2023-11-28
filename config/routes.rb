@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       resources :lottery, only: [:index, :show]
       resources :tickets, as: 'submit_tickets', path: 'submit_tickets', only: [:create]
       resources :shop, as: 'shop', path: 'shop', only: [:index, :show]
+      resources :orders, as: 'purchase_orders', path: 'purchase_orders', only: [:create]
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {
