@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     get 'items/index'
   end
   namespace :client do
+    namespace :me do
+      get 'orders/index'
+    end
     get 'shop/index'
     get 'lottery/index'
     get 'invite/index'
