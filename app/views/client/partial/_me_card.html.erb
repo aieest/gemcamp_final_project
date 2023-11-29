@@ -1,0 +1,12 @@
+<div class="d-flex flex-column">
+  <span class="mb-2">Username: <%= current_client_user.username %></span>
+  <small class="mb-2">Email: <%= current_client_user.email %></small>
+  <small class="mb-2">Coins: <%= current_client_user.coins %></small>
+</div>
+
+<%= link_to "Cash In Now", "", class: "btn btn-success w-100 mb-2" %>
+
+<div class="d-flex flex-row w-100">
+  <%= link_to "Edit Profile", edit_client_user_registration_path, class: "btn btn-warning w-50 me-4" %>
+  <%= link_to "Address", client_address_index_path, class: "btn btn-primary w-50" %>
+</div>
