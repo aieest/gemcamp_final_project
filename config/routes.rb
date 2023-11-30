@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   end
   namespace :client do
     namespace :me do
+      get 'invites/index'
+      get 'winnings/index'
+      get 'lotteries/index'
       get 'orders/index'
     end
     get 'shop/index'
@@ -54,6 +57,9 @@ Rails.application.routes.draw do
       resources :shop, as: 'shop', path: 'shop', only: [:index, :show]
       resources :orders, as: 'purchase_orders', path: 'purchase_orders', only: [:create]
       resources :orders, as: 'order_history', path: 'orders', only: :index, module: 'me'
+      resources :lotteries, as: 'lottery_history', path: 'lotteries', only: :index, module: 'me'
+      resources :winnings, as: 'winning_history', path: 'winnings', only: :index, module: 'me'
+      resources :invites, as: 'invite_history', path: 'me/invites', only: :index, module: 'me'
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {

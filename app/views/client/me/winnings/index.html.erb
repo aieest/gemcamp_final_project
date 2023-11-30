@@ -1,0 +1,30 @@
+<section class="client-me-winnings">
+
+  <div class="top-nav w-100" style="place-self: start">
+    <%= render partial: 'client/partial/top_nav' %>
+  </div>
+
+  <div class="client-me-main container p-4 mt-4 mb-4 border rounded">
+    <%= render partial: 'client/partial/me_card' %>
+
+    <%= render partial: 'client/partial/me_nav' %>
+
+    <div class="container border-top" style="margin-top: 20px; padding-top: 20px; height: 50vh; overflow-y: scroll">
+      <% if @winnings.present? %>
+        <% @winnings.each do |winning| %>
+          <%= render partial: 'client/partial/winning_card', locals: { winning: winning } %>
+        <% end %>
+      <% else %>
+        <h5 class="text-secondary">No Lotteries Won Yet</h5>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="bottom-nav w-100 border d-flex justify-content-center" style="place-items: center">
+    <%= render partial: 'client/partial/bottom_nav' %>
+  </div>
+
+</section>
+
+
