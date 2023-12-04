@@ -58,7 +58,11 @@ Rails.application.routes.draw do
       resources :orders, as: 'purchase_orders', path: 'purchase_orders', only: [:create]
       resources :orders, as: 'order_history', path: 'orders', only: :index, module: 'me'
       resources :lotteries, as: 'lottery_history', path: 'lotteries', only: :index, module: 'me'
-      resources :winnings, as: 'winning_history', path: 'winnings', only: :index, module: 'me'
+      resources :winnings, as: 'winning_history', path: 'winnings', module: 'me',  only: [:index, :update] do
+        member do
+          get 'claim_prize', to: 'winnings#edit', as: 'claim_prize'
+        end
+      end
       resources :invites, as: 'invite_history', path: 'me/invites', only: :index, module: 'me'
     end
 

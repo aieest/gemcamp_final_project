@@ -13,7 +13,7 @@ class Winner < ApplicationRecord
     state :claimed, :submitted, :paid, :shipped, :delivered, :shared, :published, :remove_published
 
     event :claim do
-      transitions from: :won, to: :claimed
+      transitions from: :won, to: :claimed, guard: :has_address?
     end
 
     event :submit do
@@ -49,5 +49,9 @@ class Winner < ApplicationRecord
     return unless item
 
     self.item_batch_count = item.batch_count
+  end
+
+  def has_address?
+    address.present?
   end
 end

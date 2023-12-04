@@ -67,7 +67,7 @@ class Item < ApplicationRecord
 
   def set_winner
     winning_ticket = tickets.where(item: self, batch_count: batch_count).sample
-    all_tickets = tickets.where(item: self, batch_count: batch_count)
+    all_tickets = tickets.where(item: self, batch_count: batch_count).pending
     all_tickets.each do |ticket|
       if ticket == winning_ticket
         unless ticket.win!
@@ -85,7 +85,9 @@ class Item < ApplicationRecord
       w.user = winning_ticket.user
       w.item_batch_count = batch_count
     end
-    winner.save
+    unless winner.save
+      winner.errors.full_messages
+    end
   end
 
   def before_start

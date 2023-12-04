@@ -1,0 +1,35 @@
+<%= form_with model: winning, url: url, method: method, data: { controller: 'location select2', turbo: 'false' }, class: 'form mt-2' do |f| %>
+  <% if winning.errors.any? %>
+    <ul>
+      <% winning.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <span class="fw-semibold fs-5 mb-2">Set address for contact details</span>
+
+  <div class="w-100 d-flex flex-column align-items-center" style="min-height: 300px ">
+    <% if @addresses.present? %>
+      <% @addresses.each do |address| %>
+        <div class="card w-100 mb-2">
+          <div class="card-header d-flex flex-row align-items-center">
+            <%= f.radio_button :address_id, address.id, id: "address_#{address.id}", class: 'me-2' %>
+            <span><%= address.name %> <em><%= "(Default address)" if address.is_default? %></em></span>
+          </div>
+
+          <div class="card-body d-flex flex-column py-2 px-4">
+            <span class="mb-1">Address: <%= full_address(address) %></span>
+            <small>Remark: <%= address.remark %></small>
+            <small>Phone Number: <%= address.phone_number %></small>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <h5 class="text-secondary">No Addresses</h5>
+      <%= link_to 'Add new address', client_new_address_path, class: 'w-100 btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <%= f.submit 'Submit', class: 'btn btn-success w-100' %>
+<% end %>

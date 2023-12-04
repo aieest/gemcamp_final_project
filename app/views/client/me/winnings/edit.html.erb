@@ -1,0 +1,24 @@
+<section class="client-me-winnings-edit">
+
+  <div class="top-nav w-100" style="place-self: start">
+    <%= render partial: 'client/partial/top_nav' %>
+  </div>
+
+  <div class="client-me-main container p-4 mt-4 mb-4 border rounded">
+    <div class="container mt-4 mb-5">
+      <div class="d-flex flex-row align-items-center">
+        <%= link_to 'Back', client_winning_history_index_path, class: "btn btn-primary me-2"%>
+        <span class="fs-3 fw-semibold">Claim prize</span>
+      </div>
+
+      <%= render partial: 'form', locals: { winning: @winning, url: client_winning_history_path, method: :patch }%>
+    </div>
+  </div>
+
+  <div class="bottom-nav w-100 border d-flex justify-content-center" style="place-items: center">
+    <%= render partial: 'client/partial/bottom_nav' %>
+  </div>
+
+</section>
+
+
