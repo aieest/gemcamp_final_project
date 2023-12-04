@@ -14,7 +14,8 @@
     </div>
 
     <div class="d-flex w-100 h-100 justify-content-end">
-      <%= link_to "#{winning.won? ? 'Claim' : 'Claimed'}", claim_prize_client_winning_history_path(winning), class: "btn btn-primary h-100 #{'disabled' unless winning.won?}" %>
+      <%= link_to "#{winning.won? ? 'Claim' : 'Claimed'}", claim_prize_client_winning_history_path(winning), class: "btn btn-primary h-100 #{'disabled' unless winning.won?}" if winning.may_claim? || winning.claimed? %>
+      <%= link_to "#{winning.delivered? ? 'Share' : 'Shared'}", share_prize_client_winning_history_path(winning), class: "btn btn-primary h-100 #{'disabled' unless winning.delivered?}" if winning.delivered? || winning.shared? || winning.published? || winning.remove_published? %>
     </div>
   </div>
 </div>

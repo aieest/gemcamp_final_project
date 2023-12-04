@@ -16,15 +16,15 @@
         <small>Item: <%= winner.item.name %></small>
         <small>Batch count: <%= winner.item_batch_count %></small>
         <small>Address: <%= full_address(winner.address) %> </small>
-        <small>Paid by: <%= winner.paid? ? winner.admin : 'None' %></small>
+        <small>Paid by: <%= winner.paid? ? winner.admin.username : 'None' %></small>
       </div>
     </div>
 
     <%= form_tag admin_winner_path(winner), method: :patch, data: {turbo: false} do %>
-      <%= submit_tag 'Submit', class:'btn btn-sm btn-danger' if winner.may_submit? %>
-      <%= submit_tag 'Pay', class:'btn btn-sm btn-danger' if winner.may_pay? %>
-      <%= submit_tag 'Ship', class:'btn btn-sm btn-danger' if winner.may_ship? %>
-      <%= submit_tag 'Deliver', class:'btn btn-sm btn-danger' if winner.may_deliver? %>
+      <%= submit_tag 'Submit', class:'btn btn-sm btn-success' if winner.may_submit? %>
+      <%= submit_tag 'Pay', class:'btn btn-sm btn-success' if winner.may_pay? %>
+      <%= submit_tag 'Ship', class:'btn btn-sm btn-primary' if winner.may_ship? %>
+      <%= submit_tag 'Deliver', class:'btn btn-sm btn-primary' if winner.may_deliver? %>
       <%= submit_tag 'Publish', class:'btn btn-sm btn-danger' if winner.may_publish? %>
       <%= submit_tag 'Remove Publish', class:'btn btn-sm btn-danger' if winner.may_remove_publish? %>
     <% end %>

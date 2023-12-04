@@ -8,10 +8,10 @@
     <div class="container mt-4 mb-5">
       <div class="d-flex flex-row align-items-center">
         <%= link_to 'Back', client_winning_history_index_path, class: "btn btn-primary me-2"%>
-        <span class="fs-3 fw-semibold">Claim prize</span>
+        <span class="fs-3 fw-semibold">Share prize</span>
       </div>
 
-      <%= render partial: 'form', locals: { winning: @winning, url: client_winning_history_path, method: :patch }%>
+      <%= render partial: 'form_share_prize', locals: { winning: @winning, url: winning_history_path, method: :patch }%>
     </div>
   </div>
 
@@ -20,5 +20,3 @@
   </div>
 
 </section>
-
-

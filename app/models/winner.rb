@@ -1,4 +1,11 @@
 class Winner < ApplicationRecord
+  validates :item_batch_count, presence: true
+  validates :admin, presence: true, if: :admin_presence_required?
+  validates :picture, presence: true, if: :delivered?
+  validates :comment, presence: true, if: :delivered?
+
+  mount_uploader :picture, ImageUploader
+
   belongs_to :item
   belongs_to :ticket
   belongs_to :user
@@ -36,7 +43,7 @@ class Winner < ApplicationRecord
     end
 
     event :publish do
-      transitions from: [:shared,:remove_published], to: :published
+      transitions from: [:shared, :remove_published], to: :published
     end
 
     event :remove_publish do
@@ -45,6 +52,7 @@ class Winner < ApplicationRecord
   end
 
   private
+
   def set_batch_count
     return unless item
 
@@ -53,5 +61,9 @@ class Winner < ApplicationRecord
 
   def has_address?
     address.present?
+  end
+
+  def admin_presence_required?
+    submitted? || paid? || delivered? || shared? || published? || remove_published?
   end
 end

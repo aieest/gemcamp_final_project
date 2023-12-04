@@ -6,18 +6,31 @@ class Client::Me::WinningsController < ApplicationController
   end
 
 
-  def edit
+  def edit_claim_prize
     @addresses = current_client_user.addresses.includes(:city, :barangay, :province, :region)
   end
 
+  def edit_share_prize; end
+
   def update
-    @winning.state = 'claimed'
-    if @winning.update(winning_params)
-      flash[:notice] = 'Claimed item.'
-      redirect_to client_winning_history_index_path
-    else
-      flash.now[:alert] = @winning.errors.full_messages
-      render :edit
+    if params[:commit] && params[:commit] == 'Claim'
+      @winning.state = 'claimed'
+      if @winning.update(claiming_prize_params)
+        flash[:notice] = 'Claimed item.'
+        redirect_to client_winning_history_index_path
+      else
+        flash.now[:alert] = @winning.errors.full_messages
+        render :edit_claim_prize
+      end
+    elsif params[:commit] && params[:commit] == 'Share'
+      @winning.state = 'shared'
+      if @winning.update(sharing_prize_params)
+        flash[:notice] = 'Shared item.'
+        redirect_to client_winning_history_index_path
+      else
+        flash.now[:alert] = @winning.errors.full_messages
+        render :edit_share_prize
+      end
     end
   end
 
@@ -27,7 +40,11 @@ class Client::Me::WinningsController < ApplicationController
     @winning = Winner.find(params[:id])
   end
 
-  def winning_params
+  def claiming_prize_params
     params.require(:winner).permit(:address_id)
+  end
+
+  def sharing_prize_params
+    params.require(:winner).permit(:picture, :comment)
   end
 end
