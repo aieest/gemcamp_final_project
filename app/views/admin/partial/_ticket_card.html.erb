@@ -11,7 +11,7 @@
                 <small>Serial number: <%= ticket.serial_number %></small>
                 <small>State: <%= ticket.state.humanize %></small>
                 <small>Owner: <%= ticket.user&.email %></small>
-                <small>Created at: <%= ticket.created_at %></small>
+                <small>Created at: <%= ticket.created_at.strftime("%m/%d/%Y") %></small>
             </div>
 
             <div class="d-flex flex-column h-100 me-2">

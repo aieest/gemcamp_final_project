@@ -4,7 +4,7 @@
       <span>Serial number: <%= winning.ticket.serial_number %></span>
       <span>State: <%= winning.state.humanize %></span>
       <span>Owner: <%= winning.user.email %></span>
-      <span>Created at: <%= winning.created_at %></span>
+      <span>Created at: <%= winning.created_at.strftime("%m/%d/%Y") %></span>
     </div>
 
     <div class="d-flex flex-column h-100 me-2">

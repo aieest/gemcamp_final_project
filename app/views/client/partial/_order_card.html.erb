@@ -3,7 +3,7 @@
         <span>Serial Number: <%= order.serial_number %></span>
         <span>Amount: <%= order.amount %></span>
         <span>Coins: <%= order.coin %></span>
-        <span>Created at: <%= order.created_at %></span>
+        <span>Created at: <%= order.created_at.strftime("%m/%d/%Y") %></span>
         <span>State: <%= order.state.humanize %></span>
     </div>
 </div>
