@@ -1,29 +1,29 @@
-<% @tickets.each do |ticket|%>
+<% @tickets.each_with_index do |ticket, index| %>
 
-<a class="form-control border nav-link mb-2 p-2 w-100" data-bs-toggle="collapse" href="#ticket_detail_<%= index + 1 %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-    <%= ticket.serial_number %> | <%= ticket.user&.email %>
-</a>
+  <a class="form-control border nav-link mb-2 p-2 w-100" data-bs-toggle="collapse" href="#ticket_detail_<%= index + 1 %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <%= ticket.serial_number %> | <%= ticket.user.email %>
+  </a>
 
-<div class="collapse mb-2" id="ticket_detail_<%= index + 1 %>">
+  <div class="collapse mb-2" id="ticket_detail_<%= index + 1 %>">
     <div class="card card-body flex-row pe-4 justify-content-between ">
-        <div class="d-flex flex-row">
-            <div class="d-flex flex-column h-100 me-4">
-                <small>Serial number: <%= ticket.serial_number %></small>
-                <small>State: <%= ticket.state.humanize %></small>
-                <small>Owner: <%= ticket.user&.email %></small>
-                <small>Created at: <%= ticket.created_at.strftime("%m/%d/%Y") %></small>
-            </div>
-
-            <div class="d-flex flex-column h-100 me-2">
-                <small>Item: <%= ticket.item&.name %></small>
-                <small>Batch count: <%= ticket.batch_count %></small>
-            </div>
+      <div class="d-flex flex-row">
+        <div class="d-flex flex-column h-100 me-4">
+          <small>Serial number: <%= ticket.serial_number %></small>
+          <small>State: <%= ticket.state.humanize %></small>
+          <small>Owner: <%= ticket.user.email %></small>
+          <small>Created at: <%= ticket.created_at.strftime("%m/%d/%Y") %></small>
         </div>
 
-        <%= form_tag admin_tickets_path(ticket), method: :patch, data: {turbo: false} do %>
-        <%= submit_tag 'Cancel', class:'btn btn-sm btn-danger' %>
-        <% end %>
+        <div class="d-flex flex-column h-100 me-2">
+          <small>Item: <%= ticket.item.name %></small>
+          <small>Batch count: <%= ticket.batch_count %></small>
+        </div>
+      </div>
+
+      <%= form_tag admin_tickets_path(ticket), method: :patch, data: { turbo: false } do %>
+        <%= submit_tag 'Cancel', class: 'btn btn-sm btn-danger w-100 mb-2' %>
+      <% end %>
     </div>
-</div>
+  </div>
 
 <% end %>

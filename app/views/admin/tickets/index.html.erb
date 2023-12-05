@@ -34,15 +34,17 @@
         <%= f.submit 'Filter', class: 'btn btn-sm btn-primary me-2' %>
         <%= link_to 'Reset', admin_tickets_path, class: 'btn btn-sm btn-danger' %>
       <% end %>
-      <% if @tickets.present? %>
-        <div class="d-flex flex-column">
-          <% @tickets.each_with_index do |ticket, index| %>
-            <%= render partial: 'admin/partial/ticket_card', locals: { ticket: ticket, index: index } %>
-          <% end %>
-        </div>
-      <% else %>
-        <h3 class="text-secondary">No Tickets</h3>
-      <% end %>
+      <div class="ticket-list" style="height: 79vh; overflow-y: scroll">
+        <% if @tickets.present? %>
+          <div class="d-flex flex-column">
+            <% @tickets.each_with_index do |ticket, index| %>
+              <%= render partial: 'admin/partial/ticket_card', locals: { ticket: ticket, index: index } %>
+            <% end %>
+          </div>
+        <% else %>
+          <h3 class="text-secondary">No Tickets</h3>
+        <% end %>
+      </div>
 
     </div>
   </content>
