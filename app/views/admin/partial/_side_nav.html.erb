@@ -15,7 +15,7 @@
     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
       <ul style="margin: 10px; list-style: none">
         <li style="margin: 10px"><a class="accordion-body h-25" style="text-decoration: none;">User List</a></li>
-        <li style="margin: 10px"><a class="accordion-body h-25" style="text-decoration: none;">User List</a></li>
+        <li style="margin: 10px"><%= link_to 'Winner List', admin_winners_path, class: "accordion-body h-25", style: 'text-decoration: none;' %></li>
       </ul>
     </div>
   </div>
@@ -27,7 +27,6 @@
     </h2>
     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
       <ul style="margin: 10px; list-style: none">
-        <li style="margin: 10px"><%= link_to 'Winner List', admin_winners_path, class: "accordion-body h-25", style: 'text-decoration: none;' %></li>
         <li style="margin: 10px"><%= link_to 'Ticket List', admin_tickets_path, class: "accordion-body h-25", style: 'text-decoration: none;' %></li>
         <li style="margin: 10px"><%= link_to 'Offers', admin_offers_path, class: "accordion-body h-25", style: 'text-decoration: none;' %></li>
         <li style="margin: 10px"><%= link_to 'Orders', admin_orders_path, class: "accordion-body h-25", style: 'text-decoration: none;' %></li>
