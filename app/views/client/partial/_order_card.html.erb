@@ -8,6 +8,7 @@
           <span>State: <%= order.state.humanize %></span>
         </div>
 
+
         <%= button_to 'Cancel', client_order_history_path(order, commit: 'Cancel'), method: :patch, class: 'btn btn-sm btn-danger' if order.submitted? %>
     </div>
 </div>

@@ -29,5 +29,22 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
+
+    respond_to do |format|
+      if @order.pending? && @order.submit && @order.save
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("order_detail_#{params[:id]}", partial: 'admin/orders/order_card', locals: { order: @order, index: params[:index] })
+          ]
+        end
+      else
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("flash-messages", partial: 'shared/flash_messages', locals: { messages: @order.errors.full_messages })
+          ]
+        end
+      end
+    end
   end
 end
