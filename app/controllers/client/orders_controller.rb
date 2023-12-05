@@ -12,7 +12,7 @@ class Client::OrdersController < ApplicationController
 
     if @order.save
       flash[:notice] = 'Created order.'
-      redirect_to shop_index_path
+      redirect_to client_shop_index_path
     else
       flash.now[:alert] = @order.errors.full_message
       render shop_path(@offer)
@@ -25,7 +25,7 @@ class Client::OrdersController < ApplicationController
     @offer = Offer.find(params[:offer])
     unless @offer
       flash[:alert] = 'Invalid request.'
-      redirect_to shop_index_path
+      redirect_to client_shop_index_path
     end
   end
 end

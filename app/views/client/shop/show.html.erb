@@ -14,7 +14,7 @@
         <span>Coins: <%= @offer.coin %></span>
       </div>
 
-      <%= form_with url: 'client_purchase_orders_path',method: :post, class: 'mb-2' do |f| %>
+      <%= form_with url: client_purchase_orders_path,method: :post, class: 'mb-2' do |f| %>
         <%= f.hidden_field :offer, value: @offer.id %>
         <%= f.submit 'Purchase', class: 'btn btn-success w-100' %>
       <% end %>

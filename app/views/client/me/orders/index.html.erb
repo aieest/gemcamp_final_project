@@ -12,7 +12,7 @@
     <div class="container border-top" style="margin-top: 20px; padding-top: 20px; height: 50vh; overflow-y: scroll">
       <% if @orders.present? %>
         <% @orders.each do |order| %>
-          <%= render partial: 'client/me/orders/order_card', locals: { order: order } %>
+          <%= render partial: 'client/partial/order_card', locals: { order: order } %>
         <% end %>
       <% else %>
         <h5 class="text-secondary">No Orders</h5>
