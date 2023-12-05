@@ -59,12 +59,15 @@ class Order < ApplicationRecord
   end
 
   def return_coins
-    unless :deduct?
-      user.update(coin: user.coin - coin)
+    if :paid?
+      unless :deduct?
+        user.update(coin: user.coin - coin)
+      end
     end
   end
 
   def has_enough_coins?
+    return true if :submitted? || :pending?
     return true if user.coins >= coin
     errors.add(:base, 'User does not have enough coins.')
     false

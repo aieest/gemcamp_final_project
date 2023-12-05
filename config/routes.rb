@@ -57,7 +57,7 @@ Rails.application.routes.draw do
       resources :tickets, as: 'submit_tickets', path: 'submit_tickets', only: [:create]
       resources :shop, as: 'shop', path: 'shop', only: [:index, :show]
       resources :orders, as: 'purchase_orders', path: 'purchase_orders', only: [:create]
-      resources :orders, as: 'order_history', path: 'orders', only: :index, module: 'me'
+      resources :orders, as: 'order_history', path: 'orders', only: [:index, :update], module: 'me'
       resources :lotteries, as: 'lottery_history', path: 'lotteries', only: :index, module: 'me'
       resources :winnings, as: 'winning_history', path: 'winnings', module: 'me',  only: [:index, :update] do
         member do

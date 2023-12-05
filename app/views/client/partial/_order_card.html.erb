@@ -1,9 +1,13 @@
 <div class="card">
-    <div class="card-body d-flex flex-column">
-        <span>Serial Number: <%= order.serial_number %></span>
-        <span>Amount: <%= order.amount %></span>
-        <span>Coins: <%= order.coin %></span>
-        <span>Created at: <%= order.created_at.strftime("%m/%d/%Y") %></span>
-        <span>State: <%= order.state.humanize %></span>
+      <div class="card-body d-flex flex-row justify-content-between">
+        <div class="d-flex flex-column">
+          <span>Serial Number: <%= order.serial_number %></span>
+          <span>Amount: <%= order.amount %></span>
+          <span>Coins: <%= order.coin %></span>
+          <span>Created at: <%= order.created_at.strftime("%m/%d/%Y") %></span>
+          <span>State: <%= order.state.humanize %></span>
+        </div>
+
+        <%= button_to 'Cancel', client_order_history_path(order, commit: 'Cancel'), method: :patch, class: 'btn btn-sm btn-danger' if order.submitted? %>
     </div>
 </div>
