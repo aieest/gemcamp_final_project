@@ -1,0 +1,7 @@
+<div class="card mb-2">
+  <div class="card-body d-flex flex-column">
+    <span>Name: <%= invite.username.humanize %></span>
+    <span>Created at: <%= invite.created_at.strftime("%m/%d/%Y") %></span>
+    <span>Children members: <%= invite.children_members %></span>
+  </div>
+</div>
