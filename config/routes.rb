@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'items/index'
   end
   namespace :client do
+    get 'shares/index'
     namespace :me do
       get 'invites/index'
       get 'winnings/index'
@@ -65,6 +66,7 @@ Rails.application.routes.draw do
         end
       end
       resources :invites, as: 'invite_history', path: 'me/invites', only: :index, module: 'me'
+      resources :shares, as: 'shares', path: 'shares', only: :index
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {
