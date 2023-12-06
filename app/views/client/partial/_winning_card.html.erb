@@ -18,8 +18,8 @@
         <%= link_to "Claim", claim_prize_client_winning_history_path(winning), class: "btn btn-primary h-100 #{'disabled' if winning.claimed?}", disabled: winning.claimed? %>
       <% end %>
 
-      <% if winning.shipped? || winning.shared? %>
-        <%= link_to winning.shared? ? "Shared" : "Share", share_prize_client_winning_history_path(winning), class: "btn btn-primary h-100 #{'disabled' if winning.shared?}", disabled: winning.shared? %>
+      <% if winning.shipped? || winning.shared? || winning.published? %>
+        <%= link_to winning.shared? || winning.published? ? "Shared" : "Share", share_prize_client_winning_history_path(winning), class: "btn btn-primary h-100 #{'disabled' if winning.shared? || winning.published? }", disabled: winning.shared? %>
       <% end %>
     </div>
   </div>
