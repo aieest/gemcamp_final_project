@@ -46,11 +46,13 @@ class Order < ApplicationRecord
     end
   end
 
+
   def decrease_user_coins
-    if :deduct?
+    if deduct?
       user.update(coin: user.coin - coin)
     end
   end
+
 
   def increase_total_deposit
     if :deposit?

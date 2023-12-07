@@ -29,22 +29,49 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:id])  # Make sure you find the order you're working with
 
-    respond_to do |format|
-      if @order.pending? && @order.submit && @order.save
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace("order_detail_#{params[:id]}", partial: 'admin/orders/order_card', locals: { order: @order, index: params[:index] })
-          ]
-        end
-      else
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace("flash-messages", partial: 'shared/flash_messages', locals: { messages: @order.errors.full_messages })
-          ]
-        end
-      end
+    case params[:commit]
+    when 'Submit'
+      handle_submit
+    when 'Pay'
+      handle_pay
+    when 'Cancel'
+      handle_cancel
     end
   end
+
+  private
+
+  def handle_submit
+    if @order.may_submit?  # Assuming you have a 'may_submit?' method in your Order model
+      @order.submit!
+      flash[:notice] = 'Order submitted.'
+    else
+      flash[:error] = 'Unable to submit order.'
+    end
+    redirect_to admin_orders_index_path
+  end
+
+  def handle_pay
+    if @order.may_pay?  # Assuming you have a 'may_pay?' method in your Order model
+      @order.pay!
+      flash[:notice] = 'Order paid.'
+    else
+      flash[:error] = 'Unable to pay order.'
+    end
+    redirect_to admin_orders_index_path
+  end
+
+  def handle_cancel
+    if @order.may_cancel?  # Assuming you have a 'may_cancel?' method in your Order model
+      @order.cancel!
+      flash[:notice] = 'Order cancelled.'
+    else
+      flash[:error] = 'Unable to cancel order.'
+    end
+    redirect_to admin_orders_index_path
+  end
+
+
 end

@@ -19,4 +19,6 @@ class User < ApplicationRecord
       .group("users.id")
       .select("users.*, COALESCE(SUM(children.total_deposit), 0) AS children_total_deposit")
   }
+
+  mount_uploader :image, ImageUploader
 end

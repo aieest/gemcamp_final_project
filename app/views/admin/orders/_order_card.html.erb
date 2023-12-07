@@ -1,4 +1,4 @@
-<a class="form-control border nav-link mb-2 p-2 w-100" data-bs-toggle="collapse" href="#order_detail_<%= (index.to_i + 1) %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+<a class="form-control border nav-link mb-2 p-2 w-100 <%= 'alert alert-success' if order.paid? %> <%= 'alert alert-danger' if order.cancelled? %>" data-bs-toggle="collapse" href="#order_detail_<%= (index.to_i + 1) %>" role="button" aria-expanded="false" aria-controls="collapseExample">
   <%= order.serial_number %> | <%= order.user.email %>
 </a>
 
@@ -22,8 +22,8 @@
 
     <div class="d-flex justify-content-end">
       <%= button_to 'Submit', admin_order_path(order, commit: 'Submit'), method: :patch, class: 'btn btn-sm btn-success' if order.pending? %>
-      <%= button_to 'Pay', admin_order_path(order, commit: 'Pay'), method: :patch, class: 'btn btn-sm btn-success w-100 mb-2' if order.may_pay? %>
-      <%= button_to 'Cancel', admin_order_path(order, commit: 'Cancel'), method: :patch, class: 'btn btn-sm btn-danger w-100 mb-2' if order.may_cancel? %>
+      <%= button_to order.may_pay? ? 'Pay' : 'Paid', admin_order_path(order, commit: 'Pay'), method: :patch, class: 'btn btn-sm btn-success w-100 mb-2' if order.may_pay? %>
+      <%= button_to order.cancelled? ? 'Cancelled' : 'Cancel', admin_order_path(order, commit: 'Cancel'), method: :patch, class: "btn btn-sm btn-danger w-100 mb-2 #{'disabled' if order.cancelled?}", disabled: order.cancelled? %>
     </div>
 
   </div>
